@@ -8,7 +8,7 @@
     tools:context=".BookListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycerView"
+        android:id="@+id/recyclerView"
         android:layout_width="360dp"
         android:layout_height="680dp"
         android:scrollbarSize="8dp"

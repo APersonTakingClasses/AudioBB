@@ -1,9 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">AudioBB</string>
     <string name="book_title">Book Title</string>
     <string name="book_author">Book Author</string>
 
-    <string-array name="titleArray">
+    <string-array name="title_array">
         <item>The Jungle Book</item>
         <item>Treasure Island</item>
         <item>Little Women</item>
@@ -12,11 +13,11 @@
         <item>The Lion, the Witch and the Wardrobe</item>
         <item>Alice's Adventures in Wonderland</item>
         <item>The Lord of the Rings</item>
-        <item>The Little Prince</item>
-        <item>Things Fall Apart</item>
+        <item>The Iliad</item>
+        <item>Charlie and the Chocolate Factory</item>
     </string-array>
 
-    <string-array name="authorArray">
+    <string-array name="author_array">
         <item>Rudyard Kipling</item>
         <item>Robert Louis Stevenson</item>
         <item>Louisa May Alcott</item>
@@ -25,8 +26,7 @@
         <item>C. S. Lewis</item>
         <item>Lewis Carroll</item>
         <item>J. R. R. Tolkien</item>
-        <item>Etc</item>
-        <item>Book</item>
+        <item>Homer</item>
+        <item>Roald Dahl</item>
     </string-array>
-
 </resources>

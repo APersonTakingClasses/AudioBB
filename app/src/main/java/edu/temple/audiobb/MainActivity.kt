@@ -7,14 +7,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportActionBar?.title = this.resources.getString(R.string.app_name)
+        //supportActionBar?.title = this.resources.getString(R.string.app_name)
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.bookListContainer, BookListFragment.newInstance(generateBooks()))
+            .commit()
+
     }
 
-    fun generateBooks(): Array<Book> {
+    private fun generateBooks(): Array<Book> {
         // generate an array of ten books
         // input into BookList.newInstance()
-        val titleArray: Array<String> = this.resources.getStringArray(R.array.titleArray)
-        val authorArray: Array<String> = this.resources.getStringArray(R.array.authorArray)
+        val titleArray: Array<String> = this.resources.getStringArray(R.array.title_array)
+        val authorArray: Array<String> = this.resources.getStringArray(R.array.author_array)
         return arrayOf(
             Book(titleArray[0], authorArray[0]),
             Book(titleArray[1], authorArray[1]),
