@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">AudioBB</string>
+
+    <string-array name="titleArray">
+        <item>The Jungle Book</item>
+        <item>Treasure Island</item>
+        <item>Little Women</item>
+        <item>Frankenstein</item>
+        <item>Don Quixote</item>
+        <item>The Lion, the Witch and the Wardrobe</item>
+        <item>Alice's Adventures in Wonderland</item>
+        <item>The Lord of the Rings</item>
+        <item>The Little Prince</item>
+        <item>Things Fall Apart</item>
+    </string-array>
+
+    <string-array name="authorArray">
+        <item>Rudyard Kipling</item>
+        <item>Robert Louis Stevenson</item>
+        <item>Louisa May Alcott</item>
+        <item>Mary Shelley</item>
+        <item>Miguel de Cervantes</item>
+        <item>C. S. Lewis</item>
+        <item>Lewis Carroll</item>
+        <item>J. R. R. Tolkien</item>
+        <item>Antoine de Saint-Exupéry</item>
+        <item>Chinua Achebe</item>
+    </string-array>
 </resources>
