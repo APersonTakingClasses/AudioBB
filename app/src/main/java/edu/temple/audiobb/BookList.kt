@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.ArrayList
 
-class BookList() {
+class BookList {
     // arrayList of Book objects
     // init empty bookList
     private var bookList = arrayListOf<Book>()
@@ -18,6 +18,6 @@ class BookList() {
     // encapsulation of arrayList functions
     fun add(_book:Book){ bookList.add(_book) }
     fun remove(_book:Book){ bookList.remove(_book) }
-    fun get(_index:Int) : Book{ return bookList.get(_index) }
+    fun get(_index:Int) : Book{ return bookList[_index] }
     fun size():Int{ return bookList.size }
 }

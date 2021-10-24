@@ -8,7 +8,7 @@ class BookViewModel: ViewModel() {
     private val itemLiveData = MutableLiveData<Book>()
 
     fun getItem () : LiveData<Book> {
-        return itemLiveData;
+        return itemLiveData
     }
 
     fun setItem(book: Book) {
