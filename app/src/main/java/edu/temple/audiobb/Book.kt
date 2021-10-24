@@ -33,7 +33,6 @@ class Book(_title:String, _author:String):Parcelable {
     fun getAuthor() :  String { return author }
     fun changeTitle(_t : String){ title = _t}
     fun changeAuthor(_a : String){ author = _a}
-
 }
 
 // val book1 = Book("DaRules","DaAuthor")

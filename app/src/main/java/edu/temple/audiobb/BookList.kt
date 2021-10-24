@@ -16,16 +16,8 @@ class BookList() {
 
     // usability functions
     // encapsulation of arrayList functions
-    fun add(_book:Book){
-        bookList.add(_book)
-    }
-    fun remove(_book:Book){
-        bookList.remove(_book)
-    }
-    fun get(_index:Int) : Book{
-        return bookList.get(_index)
-    }
-    fun size():Int{
-        return bookList.size
-    }
+    fun add(_book:Book){ bookList.add(_book) }
+    fun remove(_book:Book){ bookList.remove(_book) }
+    fun get(_index:Int) : Book{ return bookList.get(_index) }
+    fun size():Int{ return bookList.size }
 }

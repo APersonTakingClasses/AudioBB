@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">AudioBB</string>
+    <string name="book_title">Book Title</string>
+    <string name="book_author">Book Author</string>
 
     <string-array name="titleArray">
         <item>The Jungle Book</item>
@@ -26,4 +28,6 @@
         <item>Antoine de Saint-Exupéry</item>
         <item>Chinua Achebe</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
