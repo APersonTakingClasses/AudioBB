@@ -1,48 +1,65 @@
 package edu.temple.audiobb
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-private const val BOOKLIST_KEY = "books"
+private const val BOOK_LIST = "booklist"
 
 class BookListFragment : Fragment() {
-    private lateinit var bookList: BookList
+    private var bookList: BookList? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {(it.getParcelableArray(BOOKLIST_KEY) as BookList).also { bookList = it }}
+        arguments?.let {
+            bookList = it.getSerializable(BOOK_LIST) as BookList?
+        }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val layout = inflater.inflate(R.layout.fragment_book_list, container, false)
-        val recyclerView = layout.findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        return inflater.inflate(R.layout.fragment_book_list, container, false)
+    }
 
-        val itemViewModel = ViewModelProvider(requireActivity()).get(BookViewModel::class.java)
-        val onClickListener = View.OnClickListener {
-            val itemPosition = recyclerView.getChildAdapterPosition(it)
-            itemViewModel.setItem(bookList.get(itemPosition))
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bookViewModel = ViewModelProvider(requireActivity()).get(BookViewModel::class.java)
+
+        // Using those sweet, sweet lambdas - but an onClickListener will do the job too
+        val onClick : (Book) -> Unit = {
+            // Update the ViewModel
+                book: Book -> bookViewModel.setSelectedBook(book)
+            // Inform the activity of the selection so as to not have the event replayed
+            // when the activity is restarted
+            (activity as BookSelectedInterface).bookSelected()
         }
-
-        recyclerView.adapter = BookListAdapter(bookList, onClickListener)
-
-        return layout
+        with (view as RecyclerView) {
+            layoutManager = LinearLayoutManager(requireActivity())
+            adapter = BookListAdapter (bookList!!, onClick)
+        }
     }
 
     companion object {
-        fun newInstance(books: Array<Book>) =
+
+        @JvmStatic
+        fun newInstance(bookList: BookList) =
             BookListFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelableArray(BOOKLIST_KEY, books)
+                    putSerializable(BOOK_LIST, bookList)
                 }
             }
+    }
+
+    interface BookSelectedInterface {
+        fun bookSelected()
     }
 }

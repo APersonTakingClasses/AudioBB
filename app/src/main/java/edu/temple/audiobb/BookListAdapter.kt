@@ -1,34 +1,46 @@
 package edu.temple.audiobb
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.Text
 
-class BookListAdapter(_bookList: BookList, _onClickListener: View.OnClickListener) : RecyclerView.Adapter<BookListAdapter.ViewHolder>() {
-    private val bookList = _bookList
-    private val ocl = _onClickListener
+class BookListAdapter (_bookList: BookList, _onClick: (Book) -> Unit) : RecyclerView.Adapter<BookListAdapter.BookViewHolder>() {
+    val bookList = _bookList
+    val onClick = _onClick
 
-    class ViewHolder(_view: View, ocl: View.OnClickListener) : RecyclerView.ViewHolder(_view) {
-        //val bookTitleView : TextView = _view.findViewById<TextView>(R.id.bookTitle)
-        val bookTitleView : TextView = _view.apply { setOnClickListener(ocl) } as TextView
-        //val bookAuthorView : TextView = _view.findViewById<TextView>(R.id.bookAuthor)
-        val bookAuthorView : TextView = _view.apply{ setOnClickListener(ocl)} as TextView
+    // Assigning the book directly to the onClick function instead of the View
+    // That leaves less/no work in the callback itself
+    // (no need to look up the book object associated with the view)
+    class BookViewHolder (layout : View, onClick : (Book) -> Unit): RecyclerView.ViewHolder (layout) {
+        val titleTextView : TextView
+        val authorTextView: TextView
+        lateinit var book: Book
+        init {
+            titleTextView = layout.findViewById(R.id.titleTextView)
+            authorTextView = layout.findViewById(R.id.authorTextView)
+            titleTextView.setOnClickListener {
+                onClick(book)
+            }
+        }
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ImageView(parent.context).apply { layoutParams = ViewGroup.LayoutParams(300, 300) }, ocl)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookViewHolder {
+        return BookViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.booklist_items_layout, parent, false), onClick)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bookTitleView.text = bookList.get(position).getTitle()
-        holder.bookAuthorView.text = bookList.get(position).getAuthor()
-        //holder.bookTitleView.setImageResource(bookList[position].getTitle().toString())
+    // Bind the book to the holder along with the values for the views
+    override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
+        holder.titleTextView.text = bookList[position].title
+        holder.authorTextView.text = bookList[position].author
+        holder.book = bookList[position]
     }
 
     override fun getItemCount(): Int {
         return bookList.size()
     }
+
 }
