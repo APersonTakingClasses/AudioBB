@@ -7,10 +7,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //supportActionBar?.title = this.resources.getString(R.string.app_name)
+        supportActionBar?.title = this.resources.getString(R.string.app_name)
 
         supportFragmentManager.beginTransaction()
-            .add(R.id.bookListContainer, BookListFragment.newInstance(generateBooks()))
+            .add(R.id.container, BookListFragment.newInstance(generateBooks()))
             .commit()
 
     }

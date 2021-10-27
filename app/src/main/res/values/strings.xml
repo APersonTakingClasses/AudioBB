@@ -3,7 +3,6 @@
     <string name="app_name">AudioBB</string>
     <string name="book_title">Book Title</string>
     <string name="book_author">Book Author</string>
-
     <string-array name="title_array">
         <item>The Jungle Book</item>
         <item>Treasure Island</item>
@@ -16,7 +15,6 @@
         <item>The Iliad</item>
         <item>Charlie and the Chocolate Factory</item>
     </string-array>
-
     <string-array name="author_array">
         <item>Rudyard Kipling</item>
         <item>Robert Louis Stevenson</item>

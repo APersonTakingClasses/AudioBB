@@ -23,7 +23,7 @@ class BookListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val layout = inflater.inflate(R.layout.fragment_book_list, container, false)
-        val recyclerView = layout.findViewById<RecyclerView>(R.id.recycerView)
+        val recyclerView = layout.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val itemViewModel = ViewModelProvider(requireActivity()).get(BookViewModel::class.java)
@@ -38,8 +38,6 @@ class BookListFragment : Fragment() {
     }
 
     companion object {
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
         fun newInstance(books: Array<Book>) =
             BookListFragment().apply {
                 arguments = Bundle().apply {
